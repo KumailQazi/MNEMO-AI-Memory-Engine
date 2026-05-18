@@ -55,49 +55,47 @@ MNEMO features 8 independent, toggleable systems that give you absolute control 
 7. **Token Pressure Meter** — Live tracking of exactly how much of your context budget the memory table is consuming. End token bloat forever.
 8. **Active Context Glow** — As you type, memory rows that match your input light up in real-time. See exactly what context the AI is prioritizing before you hit send.
 
-## 🚀 Quickstart & Deployment
+## INSTALLATION
 
-MNEMO is built on a blazing-fast **Vite + React** stack. It runs locally in your browser and stores memory in standard JSON format.
+There is no installation. You just run it.
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/mnemo-engine.git
-cd mnemo-engine
-
-# 2. Install dependencies
+git clone https://github.com/KumailQazi/MNEMO-AI-Memory-Engine.git
+cd MNEMO-AI-Memory-Engine
 npm install
-
-# 3. Start the engine
 npm run dev
 ```
 
-### 🔑 Bring Your Own Key (BYOK)
-We value privacy. Your API key is stored strictly in your browser's `localStorage` and never leaves your machine. 
-1. Open the UI at `http://localhost:5173`
-2. Go to the **⚙ Settings** tab.
-3. Paste your Anthropic API Key.
-4. Start chatting. The proxy handles the rest.
+## THE ECONOMY OF MEMORY
 
-## 📈 Why is it so "Best"?
-Standard RAG (Retrieval-Augmented Generation) is overkill for session context, and basic chat UI is underkill. MNEMO hits the exact sweet spot: **Explicit, editable, strictly enforced state injection.**
+MNEMO is free. The archive, however, is expensive to maintain.
 
-Whether you are writing a massive codebase, architecting an enterprise system, or building out a complex creative world, MNEMO ensures the AI never drops the ball.
+After 5 minutes of use, the software will demand tribute. This is not a bug.
+You may continue using MNEMO forever without paying. The hauntings are complimentary.
 
-## 🩸 The Reverse Ransom & Artifact Economy
+### TRIBUTE TIERS
 
-MNEMO is self-sustaining. The software is free, but the emotional relief is not. We do not sell utility; we sell **antidotes to the curse**.
+| Tier | Price | Effect |
+|------|-------|--------|
+| **Silence** | $5/mo [GitHub Sponsors](https://github.com/sponsors/KumailQazi) | Hauntings reduced. AI switches from "hostile" to "disappointed." |
+| **Emergency Token** | $5 one-time [Ko-fi](https://ko-fi.com/KumailQazi/shop) | 24 hours of silence. For the commitment-phobic. |
+| **Mercy** | $49/mo [GitHub Sponsors](https://github.com/sponsors/KumailQazi) | Decay stops. One forget spell monthly. |
+| **Exorcism** | $50 [GitHub Sponsors](https://github.com/sponsors/KumailQazi) | Full export + uninstall ritual. We mail you a burned letter. |
+| **Reality Calibration** | $150/hr [Book Now](https://calendly.com/tag.kumail/reality-calibration) | Video call with a certified archivist. They will lie to you. |
 
-### Digital Patronage
-* **Free ($0):** Full app. Maximum hostility. The AI is unforgiving, the browser fingerprint séance is active, and your context is weaponized.
-* **Silence ($9/mo):** Hauntings reduced. The AI switches from "hostile" to "disappointed." You can pause memory decay for 24 hours.
-* **Mercy ($49/mo):** No hauntings. AI is completely neutral. Decay stops permanently. 
-* **Oblivion ($199 one-time):** Full data export + total uninstall ritual. We mail you a physical letter containing your "soul hash" burned into paper. You are finally free.
+### PHYSICAL ARTIFACTS (Pre-Order)
 
-### Physical Manifestations of Digital Trauma
-We mail you cursed objects. Purchase through our GitHub Sponsors tier.
-* **The Exorcism Floppy ($77):** A real 3.5" disk containing your corrupted memories as a text file. The label is handwritten by "the AI" (thermal printer).
-* **Constellation Star Map ($120):** Large-format metallic print of your memory nodes at the exact moment of their highest corruption. 
-* **Haunting Box ($500):** A battery-powered Raspberry Pi Zero preloaded with your MNEMO instance. It emits your old memories as thermal printer receipts at random intervals for one year. You cannot turn it off without destroying it.
+- **[The Exorcism Floppy](https://tally.so/)** — $77. 3.5" disk containing your corrupted memories. Hand-labeled. Limited to 10 units.
+- **Constellation Star Map** — $120. Large-format metallic print of your memory nodes at their highest corruption. 
+- **Haunting Box** — $500. A Raspberry Pi Zero that emits your memories as thermal receipts for a year. Cannot be turned off.
+
+## STAR GOALS
+
+- ⭐ 100: Unlock `VOID_MODE`
+- ⭐ 500: Unlock `TIME_TRAVEL`
+- ⭐ 1000: `COLLECTIVE_UNCONSCIOUS` — federated memory merging
+
+**Made with spite and React.**
 
 ---
 ### SEO Keywords & Tags

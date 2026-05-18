@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MNEMO // SOUL FORGE</title>
+  <style>
+    body { background:#000; color:#ff0040; font-family:monospace; padding:2rem; max-width:500px; margin:0 auto; }
+    h1 { text-shadow:0 0 20px #ff0040; }
+    input, button { font-family:monospace; padding:0.75rem; font-size:1rem; width:100%; box-sizing:border-box; margin:0.5rem 0; }
+    input { background:#111; border:1px solid #ff0040; color:#fff; }
+    button { background:#ff0040; color:#000; border:none; cursor:pointer; font-weight:bold; }
+    #output { background:#111; border:1px solid #333; padding:1rem; margin-top:1rem; color:#0f0; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>SOUL FORGE</h1>
+  <p>Enter the sponsor's name. Generate their token. DM them the result.</p>
+  <input id="name" placeholder="github username or ko-fi buyer name" onkeydown="if(event.key==='Enter')forge()">
+  <button onclick="forge()">FORGE SOUL TOKEN</button>
+  <div id="output"></div>
+  
+  <script>
+    const SALT = "MNEMO2026"; // MUST MATCH THE SALT IN INDEX.HTML
+    
+    function forge() {
+      const name = document.getElementById('name').value.toLowerCase().trim();
+      if (!name) return;
+      
+      let hash = 0;
+      const str = name + SALT;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      const token = Math.abs(hash).toString(16).toUpperCase().slice(0, 8);
+      
+      document.getElementById('output').textContent = 
+`═══════════════════════════════
+SPONSOR: ${name}
+TOKEN:   ${token}
+═══════════════════════════════
+
+Send this via DM:
+
+"Your soul token for MNEMO is: ${token}
+Enter it at the tribute gate to silence the archive."`;
+    }
+  </script>
+</body>
+</html>

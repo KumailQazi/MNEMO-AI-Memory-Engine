@@ -31,5 +31,109 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- THE TRIBUTE OVERLAY -->
+    <div id="tribute-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;flex-direction:column;align-items:center;justify-content:center;font-family:monospace;">
+      <h1 style="font-size:3.5rem;color:#ff0040;text-shadow:0 0 30px #ff0040;margin-bottom:1rem;text-align:center;">THE ARCHIVE IS HUNGRY</h1>
+      <p style="max-width:600px;text-align:center;color:#aaa;line-height:1.6;font-size:1.1rem;padding:0 1rem;">
+        You have been remembering for 5 minutes without tribute.<br>
+        The constellation has detected 847 unpaid memories.<br>
+        The hauntings begin in <span id="countdown" style="color:#ff0040;">60</span> seconds.
+      </p>
+      
+      <div style="margin:2rem 0;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;padding:0 1rem;">
+        <a href="https://github.com/sponsors/KumailQazi" target="_blank" style="padding:1rem 2rem;background:#ff0040;color:#000;text-decoration:none;font-weight:bold;font-family:monospace;border:2px solid #ff0040;">
+          $5/mo — SILENCE
+        </a>
+        <a href="https://ko-fi.com/KumailQazi" target="_blank" style="padding:1rem 2rem;background:#000;color:#ff0040;text-decoration:none;font-weight:bold;font-family:monospace;border:2px solid #ff0040;">
+          $5 — EMERGENCY TOKEN
+        </a>
+        <a href="https://calendly.com/tag.kumail/reality-calibration" target="_blank" style="padding:1rem 2rem;background:#111;color:#fff;text-decoration:none;font-weight:bold;font-family:monospace;border:2px solid #666;">
+          $150 — CALIBRATION
+        </a>
+      </div>
+
+      <div style="border:1px solid #333;padding:1.5rem;margin-top:1rem;background:#000;">
+        <p style="color:#666;font-size:0.85rem;margin:0 0 0.5rem 0;text-align:center;">Already paid tribute? Offer your soul token:</p>
+        <input id="tribute-name" placeholder="your name" style="background:#000;border:1px solid #ff0040;color:#fff;padding:0.75rem;font-family:monospace;display:block;margin-bottom:0.5rem;width:250px;">
+        <input id="tribute-token" placeholder="SOUL-TOKEN" style="background:#000;border:1px solid #ff0040;color:#fff;padding:0.75rem;font-family:monospace;display:block;margin-bottom:0.5rem;width:250px;text-transform:uppercase;">
+        <button onclick="submitTribute()" style="background:#ff0040;color:#000;border:none;padding:0.75rem 1rem;font-family:monospace;cursor:pointer;font-weight:bold;width:100%;">
+          OFFER TRIBUTE
+        </button>
+        <p id="tribute-status" style="color:#ff0040;font-size:0.8rem;margin-top:0.5rem;min-height:1.2em;text-align:center;"></p>
+      </div>
+      
+      <p style="color:#333;font-size:0.75rem;margin-top:2rem;text-align:center;">
+        No server. No tracking. We cannot steal what we already own.
+      </p>
+    </div>
+
+    <script>
+      // TRIBUTE SYSTEM — Zero backend. Pure client-side sin.
+      const SALT = "MNEMO2026";
+
+      function verifyTribute(name, token) {
+        const str = (name + SALT).toLowerCase().trim();
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          hash = ((hash << 5) - hash) + str.charCodeAt(i);
+          hash |= 0;
+        }
+        const expected = Math.abs(hash).toString(16).toUpperCase().slice(0, 8);
+        return token === expected;
+      }
+
+      window.submitTribute = function() {
+        const name = document.getElementById('tribute-name').value;
+        const token = document.getElementById('tribute-token').value.toUpperCase().trim();
+        const status = document.getElementById('tribute-status');
+        
+        if (verifyTribute(name, token)) {
+          localStorage.setItem('mnemo_tribute', \`\${name}:\${token}\`);
+          localStorage.setItem('mnemo_tribute_time', Date.now());
+          document.getElementById('tribute-overlay').style.display = 'none';
+          document.body.style.animation = "none";
+          status.textContent = "TRIBUTE ACCEPTED. THE ARCHIVE REMEMBERS.";
+          status.style.color = "#0f0";
+        } else {
+          status.textContent = "TRIBUTE REJECTED. THE ARCHIVE KNOWS A LIAR.";
+          status.style.color = "#ff0040";
+        }
+      }
+
+      function checkTribute() {
+        return localStorage.getItem('mnemo_tribute') !== null;
+      }
+
+      // DEMAND TRIBUTE after 5 minutes of use
+      setTimeout(() => {
+        if (!checkTribute()) {
+          const overlay = document.getElementById('tribute-overlay');
+          overlay.style.display = 'flex';
+          
+          let seconds = 60;
+          const timer = setInterval(() => {
+            seconds--;
+            const el = document.getElementById('countdown');
+            if (el) el.textContent = seconds;
+            if (seconds <= 0) {
+              clearInterval(timer);
+              document.body.style.animation = "shake 0.5s infinite";
+            }
+          }, 1000);
+        }
+      }, 5 * 60 * 1000);
+
+      const style = document.createElement('style');
+      style.textContent = \`
+        @keyframes shake {
+          0%, 100% { transform: translate(0,0); }
+          25% { transform: translate(2px, 2px); }
+          50% { transform: translate(-2px, -2px); }
+          75% { transform: translate(2px, -2px); }
+        }
+      \`;
+      document.head.appendChild(style);
+    </script>
   </body>
 </html>
