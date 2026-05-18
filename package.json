@@ -1,7 +1,9 @@
 {
-  "name": "mnemo_app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "mnemo-ai-memory-engine",
+  "description": "The ultimate persistent memory engine for LLMs. A React interface that gives Claude and ChatGPT absolute long-term context control without token bloat.",
+  "keywords": ["ai", "memory", "llm", "claude 3.5 sonnet", "chatgpt", "context-window", "prompt-engineering", "rag", "react", "agentic-ai"],
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

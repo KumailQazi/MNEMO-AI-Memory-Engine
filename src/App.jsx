@@ -119,9 +119,11 @@ export default function App() {
   const [features, setFeatures] = useState(
     Object.fromEntries(FEATURES.map(f => [f.id, true]))
   );
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("mnemo_api_key") || "");
   const chatBottom = useRef(null);
 
   useEffect(() => { chatBottom.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, loading]);
+  useEffect(() => { localStorage.setItem("mnemo_api_key", apiKey); }, [apiKey]);
 
   const activeMemory = useMemo(() => memory.filter(r => !r.outdated), [memory]);
   const outdatedMemory = useMemo(() => memory.filter(r => r.outdated), [memory]);
@@ -229,17 +231,24 @@ export default function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      if (!apiKey) throw new Error("API Key is missing. Please add it in Settings (⚙).");
+      
+      const res = await fetch("/api/anthropic/v1/messages", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01"
+        },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "claude-3-5-sonnet-20241022",
           max_tokens: 1000,
           system: systemPrompt,
           messages: newMessages,
         }),
       });
       const data = await res.json();
+      if (data.type === "error") throw new Error(data.error.message);
       const rawText = data.content?.find(b => b.type === "text")?.text || "[No response]";
       const updates = parseMemoryUpdate(rawText);
       const cleanText = stripMemoryBlock(rawText);
@@ -526,6 +535,20 @@ export default function App() {
       {/* ── SETTINGS ── */}
       {activeTab === "settings" && (
         <div style={S.settingsPane}>
+          <div style={S.settingsHeader}>
+            <span style={S.settingsTitle}>ANTHROPIC API CONFIGURATION</span>
+          </div>
+          <div style={{ marginBottom: "24px" }}>
+            <input 
+              style={{ ...S.tinput, width: "100%", maxWidth: "400px", padding: "8px 12px", fontSize: "12px", color: apiKey ? "#00ff9d" : "#cbd5e1" }} 
+              type="password" 
+              placeholder="Paste your Anthropic API Key (sk-ant-...)" 
+              value={apiKey} 
+              onChange={e => setApiKey(e.target.value)} 
+            />
+            <p style={{ fontSize: "10px", color: "#475569", marginTop: "6px" }}>Key is stored locally in your browser. Not sent anywhere else.</p>
+          </div>
+
           <div style={S.settingsHeader}>
             <span style={S.settingsTitle}>FEATURE TOGGLES</span>
             <span style={{ color: "#334155", fontSize: "10px" }}>{enabledCount}/8 enabled</span>
