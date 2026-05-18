@@ -15,6 +15,12 @@
 
 <br/>
 
+<div align="center">
+  <img src="public/mnemo-ai-persistent-memory-chat.webp" alt="MNEMO AI Persistent Memory Chat Engine Interface Claude 3.5 Sonnet" width="800" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 255, 157, 0.1);" />
+</div>
+
+<br/>
+
 ## ⚠️ The Problem: Standard AI Chat is Broken
 
 Every standard AI interface operates like a goldfish. It guesses what's important, silently drops critical context when the token limit hits, and forces you to re-explain the exact same instructions, preferences, and architecture rules every single session.
@@ -28,6 +34,11 @@ Every standard AI interface operates like a goldfish. It guesses what's importan
 Perfect for **Software Engineers, Data Analysts, and Enterprise Power Users** who demand strict adherence to complex rulesets across long development sessions.
 
 ### ⚙️ The 8-Cylinder Memory Engine
+
+<div align="center">
+  <img src="public/mnemo-agentic-memory-settings.webp" alt="MNEMO Agentic AI Settings Panel for Token Pressure and Memory Control" width="800" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 255, 157, 0.1);" />
+</div>
+<br/>
 
 MNEMO features 8 independent, toggleable systems that give you absolute control over what the AI knows:
 
