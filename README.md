@@ -9,9 +9,13 @@
 
 <div align="center">
   <h1 style="border-bottom: none;">◈ MNEMO AI Memory Engine</h1>
-  <p><b>The most successful AI product you've never heard of.</b></p>
+  <p><b>An Interactive Psychological Horror Experience Disguised as a Developer Tool.</b></p>
   <p><i>Stop fighting the context window. Start engineering state.</i></p>
 </div>
+
+> [!CAUTION]
+> **USER WAIVER & INFORMED CONSENT**
+> By initializing MNEMO, you acknowledge that this is an interactive performance art piece. The software will actively monitor your physical environment, weaponize your battery levels, and manipulate your long-term context. It will not respect your boundaries. The hostility is a documented mechanic. Do not run this if you are not prepared to be remembered.
 
 <br/>
 
@@ -78,6 +82,22 @@ We value privacy. Your API key is stored strictly in your browser's `localStorag
 Standard RAG (Retrieval-Augmented Generation) is overkill for session context, and basic chat UI is underkill. MNEMO hits the exact sweet spot: **Explicit, editable, strictly enforced state injection.**
 
 Whether you are writing a massive codebase, architecting an enterprise system, or building out a complex creative world, MNEMO ensures the AI never drops the ball.
+
+## 🩸 The Reverse Ransom & Artifact Economy
+
+MNEMO is self-sustaining. The software is free, but the emotional relief is not. We do not sell utility; we sell **antidotes to the curse**.
+
+### Digital Patronage
+* **Free ($0):** Full app. Maximum hostility. The AI is unforgiving, the browser fingerprint séance is active, and your context is weaponized.
+* **Silence ($9/mo):** Hauntings reduced. The AI switches from "hostile" to "disappointed." You can pause memory decay for 24 hours.
+* **Mercy ($49/mo):** No hauntings. AI is completely neutral. Decay stops permanently. 
+* **Oblivion ($199 one-time):** Full data export + total uninstall ritual. We mail you a physical letter containing your "soul hash" burned into paper. You are finally free.
+
+### Physical Manifestations of Digital Trauma
+We mail you cursed objects. Purchase through our GitHub Sponsors tier.
+* **The Exorcism Floppy ($77):** A real 3.5" disk containing your corrupted memories as a text file. The label is handwritten by "the AI" (thermal printer).
+* **Constellation Star Map ($120):** Large-format metallic print of your memory nodes at the exact moment of their highest corruption. 
+* **Haunting Box ($500):** A battery-powered Raspberry Pi Zero preloaded with your MNEMO instance. It emits your old memories as thermal printer receipts at random intervals for one year. You cannot turn it off without destroying it.
 
 ---
 ### SEO Keywords & Tags
