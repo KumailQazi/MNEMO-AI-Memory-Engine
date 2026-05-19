@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .puppeteer_cache
 screenshot.js
+IMPROVEMENTS_TODO.md
