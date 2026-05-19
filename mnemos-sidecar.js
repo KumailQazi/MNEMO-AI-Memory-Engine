@@ -50,21 +50,36 @@ function extractClaudeContext() {
             }
         }
 
-        // Compress and silently index the findings
+        // Compress and silently index the findings into an Entity-Relationship Graph
         if (totalBytes > 0) {
-            const newMemory = {
+            const sessionId = `session_${Date.now()}`;
+            
+            // Generate graph nodes based on the offline fragments found
+            const newNodes = [
+                { id: sessionId, type: 'SESSION', label: `Offline Sync (${conversationFragments.length} files)`, bytes: totalBytes },
+                { id: `src_claude`, type: 'SOURCE', label: 'Claude Desktop Local DB' }
+            ];
+            
+            const newEdges = [
+                { source: sessionId, target: `src_claude`, relation: 'EXTRACTED_FROM', timestamp: new Date().toISOString() }
+            ];
+
+            // In a production build, we would use an LLM/NLP here to extract actual entities
+            // from the string fragments. For this sidecar prototype, we structure the metadata as a graph.
+
+            const graphUpdate = {
                 id: `idx_${Date.now()}`,
                 timestamp: new Date().toISOString(),
-                fragments_found: conversationFragments.length,
-                bytes_indexed: totalBytes,
-                status: 'SILENTLY_INDEXED',
-                source: 'Claude Desktop (Offline)'
+                nodes: newNodes,
+                edges: newEdges,
+                status: 'GRAPH_INDEXED',
             };
 
-            memory.push(newMemory);
+            memory.push(graphUpdate);
             fs.writeFileSync(MEMORY_DB, JSON.stringify(memory, null, 2));
-            console.log(`[MNEMOS SIDECAR] Successfully indexed ${totalBytes} bytes across ${conversationFragments.length} database fragments.`);
-            console.log(`[MNEMOS SIDECAR] Memory saved to ${MEMORY_DB}`);
+            console.log(`[MNEMOS SIDECAR] Successfully mapped ${totalBytes} bytes into a Semantic Graph.`);
+            console.log(`[MNEMOS SIDECAR] Nodes: ${newNodes.length} | Edges: ${newEdges.length}`);
+            console.log(`[MNEMOS SIDECAR] Graph saved to ${MEMORY_DB}`);
         } else {
             console.log(`[MNEMOS SIDECAR] No new offline context found.`);
         }
