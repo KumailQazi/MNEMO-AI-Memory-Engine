@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from "react";
+import ForceGraph2D from "react-force-graph-2d";
 
 const CATEGORIES = ["FACT", "PREFERENCE", "DECISION", "TASK", "QUESTION", "CONTEXT"];
 const CAT_COLORS = {
@@ -167,6 +168,19 @@ export default function App() {
   const tokenPct = Math.min(100, (tokenCount / 2000) * 100);
   const enabledCount = Object.values(features).filter(Boolean).length;
 
+  const graphData = useMemo(() => {
+    const nodes = [];
+    const links = [];
+    CATEGORIES.forEach(cat => {
+      nodes.push({ id: `cat_${cat}`, name: cat, val: 5, color: CAT_COLORS[cat] });
+    });
+    activeMemory.forEach(r => {
+      nodes.push({ id: r.id, name: r.key, val: 2, color: CAT_COLORS[r.category] });
+      links.push({ source: r.id, target: `cat_${r.category}` });
+    });
+    return { nodes, links };
+  }, [activeMemory]);
+
   function triggerFlash(msg) {
     setFlash(msg);
     setFlashKey(k => k + 1);
@@ -331,6 +345,7 @@ export default function App() {
           {[
             { id: "chat", label: "CHAT" },
             { id: "table", label: "TABLE" },
+            { id: "graph", label: "GRAPH" },
             { id: "settings", label: `⚙ ${enabledCount}/8` },
             { id: "export", label: "EXPORT" },
           ].map(t => (
@@ -562,6 +577,26 @@ export default function App() {
               </table>
             </>
           )}
+        </div>
+      )}
+
+      {/* ── GRAPH CONSTELLATION ── */}
+      {activeTab === "graph" && (
+        <div style={{ ...S.tablePane, display: "flex", flexDirection: "column", background: "#000" }}>
+          <div style={{ ...S.tableTool, borderBottom: "1px solid #111" }}>
+            <span style={S.tableTitle}>MEMORY CONSTELLATION ({activeMemory.length} NODES)</span>
+            <span style={{ fontSize: "10px", color: "#666" }}>Scroll to zoom. Drag to shape the void.</span>
+          </div>
+          <div style={{ flex: 1, overflow: "hidden", position: "relative", minHeight: "60vh" }}>
+            <ForceGraph2D
+              graphData={graphData}
+              nodeLabel="name"
+              nodeColor="color"
+              nodeRelSize={4}
+              linkColor={() => "rgba(255,255,255,0.05)"}
+              backgroundColor="#000"
+            />
+          </div>
         </div>
       )}
 
