@@ -1,0 +1,17 @@
+.DS_Store
+
+# Installers — GitHub Releases only (do not commit)
+*.dmg
+*.msi
+*.exe
+*.deb
+*.AppImage
+
+# Raw screen recordings (keep compressed demo in public/ only)
+*.mov
+MnemoRecording.mov
+
+# Demo video — GitHub Releases asset only
+public/mnemo-demo.mp4
+*.mov
+MnemoRecording.mov
